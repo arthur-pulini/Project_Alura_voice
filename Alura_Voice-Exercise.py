@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -60,7 +62,7 @@ print(head)
 X = finalDatas.drop('Churn', axis = 1)
 y = finalDatas['Churn']
 
-#O StandardScaler pegará os atributos, subtrairá a média do conjunto e fará a divisão pelo dresvio padrão
+#O StandardScaler pegará os atributos, subtrairá a média do conjunto e fará a divisão pelo desvio padrão
 stand = StandardScaler()
 standardizedX = stand.fit_transform(X)
 print(standardizedX[0])
@@ -76,3 +78,11 @@ np.square(a-b)
 sum = np.sum(np.square(a-b))
 distanceMaria = np.sqrt(sum)
 print(distanceMaria)
+
+#aqui dividimos o standardizedX e o y entre treino e teste, sendo o teste 30% da tabela, os valores são aleatórios
+trainX, testX, trainY, testY = train_test_split(standardizedX, y, test_size = 0.3, random_state = 123)
+
+knn = KNeighborsClassifier(metric = 'euclidean') #instanciando o modelo euclidiano
+knn.fit(trainX, trainY) #treinando o modelo
+predictKnn = knn.predict(testX) #testando o modelo com os valores de teste
+print(predictKnn)
