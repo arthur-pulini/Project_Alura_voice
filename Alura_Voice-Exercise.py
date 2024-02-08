@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import BernoulliNB
+from sklearn.tree import DecisionTreeClassifier
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -97,3 +98,9 @@ bnb = BernoulliNB(binarize=0.44)
 bnb.fit(trainX, trainY)
 predictBnb = bnb.predict(testX)
 print(predictBnb)
+
+dct = DecisionTreeClassifier(criterion='entropy', random_state=42) #instanciando o modelo
+dct.fit(trainX, trainY) #teinando o modelo
+dct.feature_importances_ #verificar a importancia de cada atributo, ou seja, aqui é onde o modelo fará uma classificação entre as features para saber qual a melhor para usar
+predictDct = dct.predict(testX)
+print(predictDct)
