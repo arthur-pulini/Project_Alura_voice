@@ -6,6 +6,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import BernoulliNB
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -86,3 +87,13 @@ knn = KNeighborsClassifier(metric = 'euclidean') #instanciando o modelo euclidia
 knn.fit(trainX, trainY) #treinando o modelo
 predictKnn = knn.predict(testX) #testando o modelo com os valores de teste
 print(predictKnn)
+
+#foi escolhido usar a mediana, porque é o valor central dos dados ordenados
+median = np.median(trainX)
+print(median)
+
+#modelo criado, o 0.44 se da pelo resultado da mediana, ou seja, defini-se que os valores acima de 0.44 se tornarão 1, e abaixo 0
+bnb = BernoulliNB(binarize=0.44)
+bnb.fit(trainX, trainY)
+predictBnb = bnb.predict(testX)
+print(predictBnb)
