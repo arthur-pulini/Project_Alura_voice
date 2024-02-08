@@ -10,6 +10,9 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -116,3 +119,9 @@ print(confusion_matrix(testY, predictDct))
 print(accuracy_score(testY, predictKnn))
 print(accuracy_score(testY, predictBnb))
 print(accuracy_score(testY, predictDct))
+print('.')
+
+#métrica que classifica o melhor modelo, a partir do calculo de quantos VP foram preditos de forma correta
+print(precision_score(testY, predictKnn))
+print(precision_score(testY, predictBnb))
+print(precision_score(testY, predictDct))
