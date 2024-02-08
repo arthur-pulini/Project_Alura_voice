@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import confusion_matrix
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -104,3 +105,7 @@ dct.fit(trainX, trainY) #teinando o modelo
 dct.feature_importances_ #verificar a importancia de cada atributo, ou seja, aqui é onde o modelo fará uma classificação entre as features para saber qual a melhor para usar
 predictDct = dct.predict(testX)
 print(predictDct)
+
+print(confusion_matrix(testY, predictKnn))
+print(confusion_matrix(testY, predictBnb))
+print(confusion_matrix(testY, predictDct))
