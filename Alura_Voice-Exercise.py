@@ -125,3 +125,9 @@ print('.')
 print(precision_score(testY, predictKnn))
 print(precision_score(testY, predictBnb))
 print(precision_score(testY, predictDct))
+print('.')
+
+#métrica que classifica o melhor modelo, com este calculo sabemos o quão bom é o modelo em classificar valores verdadeiramente positivos
+print(recall_score(testY, predictKnn))
+print(recall_score(testY, predictBnb))
+print(recall_score(testY, predictDct))
