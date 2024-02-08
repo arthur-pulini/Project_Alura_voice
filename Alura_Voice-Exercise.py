@@ -9,6 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -106,6 +107,12 @@ dct.feature_importances_ #verificar a importancia de cada atributo, ou seja, aqu
 predictDct = dct.predict(testX)
 print(predictDct)
 
+#a matriz de decisão será a métrica usada para decidir qual o melhor modelo
 print(confusion_matrix(testY, predictKnn))
 print(confusion_matrix(testY, predictBnb))
 print(confusion_matrix(testY, predictDct))
+
+#outra métrica para classificar o melhor modelo
+print(accuracy_score(testY, predictKnn))
+print(accuracy_score(testY, predictBnb))
+print(accuracy_score(testY, predictDct))
