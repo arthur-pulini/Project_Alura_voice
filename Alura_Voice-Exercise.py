@@ -12,7 +12,6 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
 
 #pegando os dados pela uri
 datas = pd.read_csv('/home/arthur-pulini/Documentos/Programação/Machine learning Alura/Alura_Voice-Exercise/Customer-Churn.csv')
@@ -131,3 +130,8 @@ print('.')
 print(recall_score(testY, predictKnn))
 print(recall_score(testY, predictBnb))
 print(recall_score(testY, predictDct))
+
+#A métrica escolhida foi a precisão, pois, calcula quantos valores positivos foram preditos de forma correta,
+#ou seja, os valores positivos são os com o Churn classificados como sim, e estes são clientes que podem sair da empresa,
+#com base nos dados a empresa pode tomar medidas para que este número caia.
+#O modelo escolhido com base na métrica de precisão foi a Árvore de decisão, pois sua porcentagem é maior.
